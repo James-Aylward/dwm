@@ -1,5 +1,5 @@
 
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int gappih    = 20;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 20;       /* vert inner gap between windows */
@@ -10,6 +10,7 @@ static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows sel
 static const unsigned int systrayonleft = 0;   	/* 0: systray in the right corner, >0: systray on left of status text */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
+static const int user_bh            = 10;        /* 2 is the default spacing around the bar's font */
 static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 1;     /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -99,14 +100,12 @@ static const char *pavucontrolcmd[] = {"pavucontrol", NULL};
 
 // Startup programs
 static const char *nmappletcmd[]  = { "nm-applet", NULL };
-static const char *wallpapercmd[]  = { "feh", "--bg-fill", "/etc/nixos/backgrounds/nix.png", NULL };
 static const char *bluemanappletcmd[]  = { "blueman-applet", NULL };
 static const char *dwmblockscmd[]  = { "dwmblocks", NULL };
 static const char *dwmblocksvolume[] = { "pkill", "-RTMIN+10", "dwmblocks", NULL };
 static const char *dwmblocksmaster[] = { "pkill", "-RTMIN+11", "dwmblocks", NULL };
 static const char **startup_programs[] = {
     nmappletcmd,
-    wallpapercmd,
     bluemanappletcmd,
     dwmblockscmd,
     dwmblocksvolume,
