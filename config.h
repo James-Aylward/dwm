@@ -17,16 +17,36 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 
 static const char *fonts[]          = { "JetBrains Mono Nerd Font:size=10" };
 static const char dmenufont[]       = "JetBrains Mono Nerd Font:size=10";
-static const char col_gray1[]       = "#282828";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#fc7e18";
-static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
-	[SchemeHid]  = { col_cyan,  col_gray1, col_cyan  },
+
+static char col_base00[]      = "#222222";
+static char col_base01[]      = "#444444";
+static char col_base02[]      = "#bbbbbb";
+static char col_base03[]      = "#bbbbbb";
+static char col_base04[]      = "#eeeeee";
+static char col_base05[]      = "#eeeeee";
+static char col_base06[]      = "#eeeeee";
+static char col_base07[]      = "#eeeeee";
+static char col_base08[]      = "#eeeeee";
+static char col_base09[]      = "#eeeeee";
+static char col_base10[]      = "#eeeeee";
+static char col_base11[]      = "#eeeeee";
+static char col_base12[]      = "#eeeeee";
+static char col_base13[]      = "#eeeeee";
+static char col_base14[]      = "#eeeeee";
+static char col_base15[]      = "#eeeeee";
+
+static char normbgcolor[]           = "#222222";
+static char normbordercolor[]       = "#444444";
+static char normfgcolor[]           = "#bbbbbb";
+static char selfgcolor[]            = "#eeeeee";
+static char selbordercolor[]        = "#005577";
+static char selbgcolor[]            = "#005577";
+static char *colors[][3] = {
+       /*               fg           bg           border   */
+       //[SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
+       //[SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
+       [SchemeNorm] = { col_base07, col_base00, col_base00 },
+       [SchemeSel]  = { col_base07, col_base09, col_base09 },
 };
 
 /* tagging */
@@ -86,9 +106,8 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 
 // Programs
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "--fn", dmenufont, "--nb", col_gray1, "--nf", col_gray3, "--sb", col_cyan, "--sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "--fn", dmenufont, "--nb", col_base00, "--nf", col_base07, "--sb", col_base09, "--sf", col_base07, NULL };
 static const char *dmenuswitchcmd[] = {"switch", NULL};
-static const char *dmenucalccmd[] = {"=", "--dmenu=dmenu", "--", "-m", dmenumon, "--fn", dmenufont, "--nb", col_gray1, "--nf", col_gray3, "--sb", col_cyan, "--sf", col_gray4, NULL};
 
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *browsercmd[]  = { "qutebrowser", NULL };
@@ -126,7 +145,7 @@ static const Key keys[] = {
 	{ 0,                    XF86XK_AudioPlay,          spawn,          SHCMD("playerctl play-pause") },
 	{ 0,                    XF86XK_AudioNext,          spawn,          SHCMD("playerctl next") },
 	{ 0,                    XF86XK_AudioPrev,          spawn,          SHCMD("playerctl prev") },
-    { MODKEY,               XK_equal,                  spawn,          {.v = dmenucalccmd }},
+    //{ MODKEY,               XK_equal,                  spawn,          {.v = dmenucalccmd }},
     { MODKEY,               XK_c,                      spawn,          {.v = dmenuswitchcmd }},
 	{ MODKEY,               XK_s,                      spawn,          {.v = pdfcmd } },
 	{ MODKEY,               XK_p,                      spawn,          {.v = dmenucmd } },
