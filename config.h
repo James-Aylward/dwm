@@ -110,7 +110,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "--fn", dmenufont
 static const char *dmenuswitchcmd[] = {"switch", NULL};
 
 static const char *termcmd[]  = { "alacritty", NULL };
-static const char *browsercmd[]  = { "qutebrowser", NULL };
+static const char *browsercmd[]  = { "librewolf", NULL };
 static const char *screenshotcmd[]  = { "flameshot", "gui", NULL };
 static const char *pdfcmd[]  = { "sioyek", "--new-window", NULL };
 static const char *notescmd[] = { "obsidian", NULL };
@@ -121,6 +121,7 @@ static const char *pavucontrolcmd[] = {"pavucontrol", NULL};
 static const char *nmappletcmd[]  = { "nm-applet", NULL };
 static const char *bluemanappletcmd[]  = { "blueman-applet", NULL };
 static const char *dwmblockscmd[]  = { "dwmblocks", NULL };
+static const char *volumereset[] = { "pamixer", "--set-volume", "0", NULL };
 static const char *dwmblocksvolume[] = { "pkill", "-RTMIN+10", "dwmblocks", NULL };
 static const char *dwmblocksmaster[] = { "pkill", "-RTMIN+11", "dwmblocks", NULL };
 static const char **startup_programs[] = {
@@ -128,7 +129,8 @@ static const char **startup_programs[] = {
     bluemanappletcmd,
     dwmblockscmd,
     dwmblocksvolume,
-    dwmblocksmaster
+    dwmblocksmaster,
+    volumereset
 };
 
 #include <X11/XF86keysym.h>
