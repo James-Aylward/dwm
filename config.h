@@ -117,6 +117,9 @@ static const char *notescmd[] = { "obsidian", NULL };
 static const char *slock[] = {"slock", NULL};
 static const char *pavucontrolcmd[] = {"pavucontrol", NULL};
 
+static const char *notifhist[] = {"dunstctl", "history-pop", NULL};
+static const char *notifclear[] = {"dunstctl", "close-all", NULL};
+
 // Startup programs
 static const char *nmappletcmd[]  = { "nm-applet", NULL };
 static const char *bluemanappletcmd[]  = { "blueman-applet", NULL };
@@ -149,7 +152,8 @@ static const Key keys[] = {
 	{ 0,                    XF86XK_AudioPlay,          spawn,          SHCMD("playerctl play-pause") },
 	{ 0,                    XF86XK_AudioNext,          spawn,          SHCMD("playerctl next") },
 	{ 0,                    XF86XK_AudioPrev,          spawn,          SHCMD("playerctl prev") },
-    //{ MODKEY,               XK_equal,                  spawn,          {.v = dmenucalccmd }},
+    { MODKEY,               XK_v,                      spawn,          {.v = notifclear }},
+    { MODKEY,               XK_z,                      spawn,          {.v = notifhist }},
     { MODKEY,               XK_c,                      spawn,          {.v = dmenuswitchcmd }},
 	{ MODKEY,               XK_s,                      spawn,          {.v = pdfcmd } },
 	{ MODKEY,               XK_p,                      spawn,          {.v = dmenucmd } },
