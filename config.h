@@ -124,13 +124,15 @@ static const char *dwmblockscmd[]  = { "dwmblocks", NULL };
 static const char *volumereset[] = { "pamixer", "--set-volume", "0", NULL };
 static const char *dwmblocksvolume[] = { "pkill", "-RTMIN+10", "dwmblocks", NULL };
 static const char *dwmblocksmaster[] = { "pkill", "-RTMIN+11", "dwmblocks", NULL };
+static const char *signal[] = { "signal-desktop", NULL };
 static const char **startup_programs[] = {
     nmappletcmd,
     bluemanappletcmd,
     dwmblockscmd,
     dwmblocksvolume,
     dwmblocksmaster,
-    volumereset
+    volumereset,
+    signal
 };
 
 #include <X11/XF86keysym.h>
