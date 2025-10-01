@@ -110,16 +110,18 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 
 // Programs
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "--fn", dmenufont, "--nb", col_base00, "--nf", col_base07, "--sb", col_base09, "--sf", col_base07, NULL };
-static const char *dmenuswitchcmd[] = {"switch", NULL};
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_base00, "-nf", col_base07, "-sb", col_base09, "-sf", col_base07, NULL };
+static const char *dmenuswitchcmd[] = {"dwmswitch", NULL};
+static const char *dmenusyscmd[] = {"dwmsys", NULL};
+static const char *dmenutimercmd[] = {"dwmtimer", NULL};
 
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *browsercmd[]  = { "librewolf", NULL };
 static const char *screenshotcmd[]  = { "flameshot", "gui", NULL };
 static const char *pdfcmd[]  = { "sioyek", "--new-window", NULL };
 static const char *notescmd[] = { "obsidian", NULL };
-static const char *slock[] = {"slock", NULL};
 static const char *pavucontrolcmd[] = {"pavucontrol", NULL};
+static const char *darktablecmd[] = {"darktable", NULL};
 
 static const char *notifhist[] = {"dunstctl", "history-pop", NULL};
 static const char *notifclear[] = {"dunstctl", "close-all", NULL};
@@ -147,7 +149,7 @@ static const char **startup_programs[] = {
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 
-    // Programs
+    // Media and control
 	{ 0,                    XF86XK_MonBrightnessUp,    spawn,          SHCMD("brightnessctl set 10%+") },
 	{ 0,                    XF86XK_MonBrightnessDown,  spawn,          SHCMD("brightnessctl set 10%-")},
 	{ 0,                    XF86XK_AudioRaiseVolume,   spawn,          SHCMD("pamixer -i 5 && pkill -RTMIN+10 dwmblocks") },
@@ -156,16 +158,20 @@ static const Key keys[] = {
 	{ 0,                    XF86XK_AudioPlay,          spawn,          SHCMD("playerctl play-pause") },
 	{ 0,                    XF86XK_AudioNext,          spawn,          SHCMD("playerctl next") },
 	{ 0,                    XF86XK_AudioPrev,          spawn,          SHCMD("playerctl prev") },
+
+    // Programs
     { MODKEY,               XK_v,                      spawn,          {.v = notifclear }},
     { MODKEY,               XK_z,                      spawn,          {.v = notifhist }},
     { MODKEY,               XK_c,                      spawn,          {.v = dmenuswitchcmd }},
 	{ MODKEY,               XK_s,                      spawn,          {.v = pdfcmd } },
-	{ MODKEY,               XK_p,                      spawn,          {.v = dmenucmd } },
+	{ MODKEY,               XK_p,                      spawn,          {.v = dmenusyscmd } },
+	{ MODKEY,               XK_space,                  spawn,          {.v = dmenucmd } },
 	{ MODKEY,               XK_w,                      spawn,          {.v = notescmd } },
+	{ MODKEY,               XK_q,                      spawn,          {.v = dmenutimercmd } },
 	{ MODKEY,               XK_Return,                 spawn,          {.v = termcmd } },
     { MODKEY,               XK_b,                      spawn,          {.v = browsercmd }},
+    { MODKEY,               XK_r,                      spawn,          {.v = darktablecmd }},
     { MODKEY,               XK_a,                      spawn,          {.v = pavucontrolcmd }},
-	{ MODKEY|ControlMask,   XK_l,                      spawn,          {.v = slock } },
 	{ MODKEY|ShiftMask,     XK_s,                      spawn,          {.v = screenshotcmd } },
 
     // Navigation and rearranging
@@ -193,7 +199,6 @@ static const Key keys[] = {
 	{ MODKEY,               XK_m,                      setlayout,      {.v = &layouts[1]} }, // monocle
 	{ MODKEY,               XK_g,                      setlayout,      {.v = &layouts[9]} }, // horizgrid
 	{ MODKEY,               XK_x,                      setlayout,      {.v = &layouts[4]} }, // deck
-	{ MODKEY,               XK_space,                  setlayout,      {0} },
 	{ MODKEY,               XK_f,                      togglefullscr,  {0} },
 
 	{ MODKEY,               XK_0,                      view,           {.ui = ~0 } },
